@@ -1,0 +1,128 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+/* HEADER */
+.header{
+    position: relative;
+    background: #fff;
+    padding: 20px 27px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid gray;
+    
+}
+
+/* LOGO */
+.logo{
+    font-size: 24px;
+    font-weight: bold;
+}
+
+/* DESKTOP NAV */
+.navbar-list{
+    display: flex;
+    gap: 30px;
+    list-style: none;
+}
+
+.navbar-links{
+    text-decoration: none;
+    font-size: 18px;
+    color: gray;
+}
+
+.navbar-links:hover{
+    color: black;
+}
+
+/* MOBILE BUTTON */
+.mobile-navbar-btn{
+    display: none;
+    background: none;
+    cursor: pointer;
+    z-index: 1000;
+}
+
+.mobile-nav-icon{
+    font-size: 32px;
+}
+
+.mobile-nav-icon[name="close-outline"]{
+    display: none;
+}
+
+.footer{
+    background: black;
+    padding: 40px 25px 20px;
+    color: white;
+}
+.footer .footer-container{
+    display: flex;
+    justify-content: column;
+    gap: 20px;
+}
+.footer h3,
+.footer h4{
+    color: white;
+    font-size: 12px;
+    margin-bottom: 12px;
+    letter-spacing: 0.5px;
+}
+.footer p{
+    font-size: 12px;
+    color: #aaa;
+    line-height: 1.6;
+}
+.footer .footer-links a{
+    display: block;
+    text-decoration: none;
+    color: #aaa;
+    font-size: 14px;
+    margin-bottom: 8px;
+}
+.footer .footer-links a:hover{
+    color: #fff;
+}
+
+.contact-item{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 14px;
+    margin-bottom: 8px;
+    gap: 10px;
+    color: #aaa;
+}
+
+.footer-bottom{
+    border-top: 1px solid #222;
+    padding-top: 15px;
+    text-align: center;
+    margin-top: 30px;
+    font-size: 12px;
+    color: #777;
+}
+
+/* Responsive Footer */
+@media (min-width: 768px) {
+
+  .footer {
+    padding: 60px;
+  }
+
+  .footer-container {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .footer-brand,
+  .footer-links,
+  .footer-contact {
+    max-width: 300px;
+  }
+}
