@@ -1,105 +1,112 @@
-*{
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     font-family: Arial, Helvetica, sans-serif;
 }
 
-/* HEADER */
-.header{
-    position: relative;
+/* ================= HEADER ================= */
+.header {
+    height: 60px;
     background: #fff;
-    padding: 20px 27px;
+    padding: 0 27px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-bottom: 2px solid gray;
-    
+    position: relative;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.08);
 }
 
 /* LOGO */
-.logo{
-    font-size: 24px;
+.logo {
+    font-size: 19px;
     font-weight: bold;
 }
 
-/* DESKTOP NAV */
-.navbar-list{
+/* ================= NAVBAR ================= */
+.navbar{
+    display: block;
+}
+.navbar-list {
     display: flex;
-    gap: 30px;
+    gap: 25px;
     list-style: none;
 }
 
-.navbar-links{
+.navbar .navbar-links {
     text-decoration: none;
-    font-size: 18px;
+    font-size: 16px;
     color: gray;
 }
 
-.navbar-links:hover{
+.navbar-links:hover {
     color: black;
 }
 
-/* MOBILE BUTTON */
-.mobile-navbar-btn{
+/* ================= MOBILE BUTTON ================= */
+.mobile-navbar-btn {
     display: none;
     background: none;
     cursor: pointer;
     z-index: 1000;
 }
 
-.mobile-nav-icon{
-    font-size: 32px;
+.mobile-nav-icon {
+    width: 30px;
+    height: 200px;
 }
 
-.mobile-nav-icon[name="close-outline"]{
+.mobile-nav-icon[name="close-outline"] {
     display: none;
 }
 
-.footer{
+/* ================= FOOTER ================= */
+.footer {
     background: black;
     padding: 40px 25px 20px;
     color: white;
 }
-.footer .footer-container{
+
+.footer-container {
     display: flex;
-    justify-content: column;
-    gap: 20px;
+    flex-direction: column;
+    gap: 30px;
 }
+
 .footer h3,
-.footer h4{
-    color: white;
-    font-size: 12px;
+.footer h4 {
+    font-size: 14px;
     margin-bottom: 12px;
-    letter-spacing: 0.5px;
 }
-.footer p{
+
+.footer p {
     font-size: 12px;
     color: #aaa;
     line-height: 1.6;
 }
-.footer .footer-links a{
+
+.footer-links a {
     display: block;
     text-decoration: none;
     color: #aaa;
     font-size: 14px;
     margin-bottom: 8px;
 }
-.footer .footer-links a:hover{
+
+.footer-links a:hover {
     color: #fff;
 }
 
-.contact-item{
+.contact-item {
     display: flex;
     align-items: center;
     gap: 10px;
     font-size: 14px;
-    margin-bottom: 8px;
-    gap: 10px;
     color: #aaa;
+    margin-bottom: 8px;
 }
 
-.footer-bottom{
+.footer-bottom {
     border-top: 1px solid #222;
     padding-top: 15px;
     text-align: center;
@@ -108,21 +115,72 @@
     color: #777;
 }
 
-/* Responsive Footer */
-@media (min-width: 768px) {
+/* ================= MOBILE NAV ================= */
+@media (max-width: 767px) {
 
-  .footer {
-    padding: 60px;
-  }
+    .mobile-navbar-btn {
+        display: block;
+    }
 
-  .footer-container {
-    flex-direction: row;
-    justify-content: space-between;
-  }
+    .navbar {
+        display: none;
+        position: absolute;
+        top: 60px; /* fixed */
+        left: 0;
+        width: 100%;
+        height: calc(100vh - 60px);
+        background: #fff;
+        display: none;
+        padding: 30px;
+    }
 
-  .footer-brand,
-  .footer-links,
-  .footer-contact {
-    max-width: 300px;
-  }
+    .navbar-list {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .active .navbar {
+        display: flex;
+    }
+
+    .active .mobile-navbar-btn .mobile-nav-icon[name="close-outline"] {
+        display: block;
+    }
+
+    .active .mobile-navbar-btn .mobile-nav-icon[name="menu-outline"] {
+        display: none;
+    }
+}
+
+/* ================= DESKTOP NAV ================= */
+@media (min-width: 981px) {
+    .mobile-navbar-btn {
+        display: none;
+    }
+
+    .navbar {
+        display: block;
+    }
+
+    .navbar-list {
+        flex-direction: row;
+    }
+}
+
+/* ================= DESKTOP FOOTER ================= */
+@media (min-width: 980px) {
+    .footer {
+        padding: 60px;
+    }
+
+    .footer-container {
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
+    .footer-brand,
+    .footer-links,
+    .footer-contact {
+        max-width: 300px;
+    }
 }
