@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enquiry | VD Photography</title>
+    
+    <link rel="stylesheet" href="../css/common.css">
+    <link rel="stylesheet" href="../css/enquiry.css">
+    <link rel="stylesheet" href="../css/home.css">
+</head>
+<body>
+
+
+
+        <!-- Header Section-->
+    <div id = "header"></div>
+
+
+
+    <main class="enquiry-main">
+        
+        <section class="page-header container">
+            <h1>GET IN TOUCH</h1>
+            <p>Have a project in mind? Fill out the form regarding your inquiry.</p>
+        </section>
+
+        <div class="container">
+            <div class="enquiry-layout-grid">
+                
+                <div class="left-column">
+                    <div class="form-card">
+                        <h2>Send us a message</h2>
+                        
+                        <form action="#" method="POST">
+                            <div class="form-row">
+                                <label for="name">Name *</label>
+                                <input type="text" id="name" name="name" placeholder="Your Full Name" required>
+                            </div>
+
+                            <div class="form-row">
+                                <label for="phone">Phone Number *</label>
+                                <input type="tel" id="phone" name="phone" placeholder="Enter Phone number" required>
+                            </div>
+
+                            <div class="form-split-row">
+                                <div class="form-group-half">
+                                    <label for="service">Type of Service *</label>
+                                    <select id="service" name="service" required>
+                                        <option value="" disabled selected>Select Option</option>
+                                        <option value="wedding">Wedding Photography</option>
+                                        <option value="pre-wedding">Pre-Wedding Shoot</option>
+                                        <option value="fashion">Fashion / Portfolio</option>
+                                        <option value="maternity">Maternity / Baby</option>
+                                        <option value="corporate">Corporate / Event</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group-half">
+                                    <label for="date">Tentative Date</label>
+                                    <input type="date" id="date" name="date">
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <label for="message">Tell us about your requirements *</label>
+                                <textarea id="message" name="message" rows="6" placeholder="Details about venue, style, etc..." required></textarea>
+                            </div>
+
+                            <button type="submit" class="btn-submit">Submit Enquiry</button>
+                        </form>
+                    </div>
+                </div>
+
+                <div class="right-column">
+                    
+                    <div class="contact-details-box">
+                        <h3>Contact Information</h3>
+                        
+                        <div class="detail-item">
+                            <span class="icon">✉️</span>
+                            <div>
+                                <h4>Email</h4>
+                                <p>info@vdphotography.com</p>
+                            </div>
+                        </div>
+
+                        <div class="detail-item">
+                            <span class="icon">📞</span>
+                            <div>
+                                <h4>Phone</h4>
+                                <p>+1 (231) 567-890</p>
+                            </div>
+                        </div>
+
+                        <div class="detail-item">
+                            <span class="icon">🕒</span>
+                            <div>
+                                <h4>Business Hours</h4>
+                                <p>Mon - Fri: 9:00 AM - 6:00 PM</p>
+                                <p>Sat: 10:00 AM - 4:00 PM</p>
+                                <p>Sun: Closed</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="quick-response-card">
+                        <h3>⚡ Quick Response</h3>
+                        <p>We typically respond to all enquiries within 24 hours during business days. For urgent matters, please call us directly.</p>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer>
+       <!--footer-->
+    <div id ="footer"></div>
+    </footer>
+<script>
+    fetch("../common/header.html")
+        .then(res => res.text())
+        .then(data => document.getElementById("header").innerHTML = data);
+
+    fetch("../common/footer.html")
+        .then(res => res.text())
+        .then(data => document.getElementById("footer").innerHTML = data);
+</script>
+</body>
+</html> 
