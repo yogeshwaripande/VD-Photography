@@ -1,0 +1,161 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  overflow-x: hidden;
+}
+
+/* ABOUT */
+.about-section {
+  text-align: center;
+  padding: 120px 20px;
+  background: #f3f3f3;
+}
+
+.about-section h1 {
+  font-size: 56px;
+  margin-bottom: 25px;
+}
+
+.about-intro,
+.about-description {
+  max-width: 900px;
+  margin: auto;
+  line-height: 1.8;
+  color: #555;
+}
+
+/* SERVICES */
+.services-section {
+  padding: 80px 20px;
+  text-align: center;
+  background: #f7f7f7;
+}
+
+.services-section h2 {
+  font-size: 50px;
+}
+
+.services-subtitle {
+  margin-bottom: 50px;
+  color: #777;
+}
+
+.services-container {
+  max-width: 1400px;          /* balanced width */
+  margin: 0 auto;             /* center container */
+  padding: 0 20px;
+
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);  /* FORCE 3 cards per row */
+  gap: 40px;                   /* better spacing */
+}
+
+/* Tablet */
+@media (max-width: 1024px) {
+  .services-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+  .services-container {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+/* CARD */
+.service-card {
+  background: #fff;
+  padding: 25px;
+  border-radius: 25px;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.service-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 15px 30px rgba(0,0,0,0.12);
+}
+
+/* IMAGE SLIDER */
+/* IMAGE SLIDER - FIXED PROFESSIONAL LOOK */
+.image-slider {
+  position: relative;
+  width: 100%;
+  height: 260px;              /* FIXED HEIGHT */
+  overflow: hidden;
+  border-radius: 6px;
+  margin-bottom: 18px;
+  background-color: #eee;     /* fallback background */
+}
+
+.image-slider img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;          /* KEY FIX */
+  object-position: center;    /* CENTER IMAGE */
+  opacity: 0;
+  transition: opacity 2.5s ease-in-out;
+}
+
+.image-slider img.face-focus {
+  object-position: center top;
+}
+
+.image-slider img.text-focus {
+  object-position: center center;
+}
+
+.image-slider img.active {
+  opacity: 1;
+}
+
+.service-card {
+  text-align: center;
+}
+
+
+.service-card p {
+  font-size: 14px;
+  color: #555;
+}
+
+/* STAR RATING */
+.rating {
+  margin-top: 12px;
+  display: flex;
+  justify-content: center;
+  gap: 4px;
+}
+
+.star {
+  font-size: 18px;
+  color: #ccc;          /* empty star */
+}
+
+.star.filled {
+  color: #f4b400;       /* golden star */
+}
+
+/* ================= SCROLL ANIMATION ================= */
+
+/* hidden state */
+.reveal {
+  opacity: 0;
+  transform: translateY(60px);
+  transition: all 0.9s ease;
+}
+
+/* visible state */
+.reveal.active {
+  opacity: 1;
+  transform: translateY(0);
+}
