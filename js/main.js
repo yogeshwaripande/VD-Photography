@@ -1,30 +1,27 @@
-fetch("common/header.html")
-.then(res => res.text())
-.then(data => {
-  document.getElementById("header").innerHTML = data;
+fetch("../common/header.html")
+  .then((res) => res.text())
+  .then((data) => {
+    document.getElementById("header").innerHTML = data;
 
-  const mobile_nav = document.querySelector(".mobile-nav-btn");
-  const nav_header = document.querySelector(".header");
+    const mobile_nav = document.querySelector(".mobile-nav-btn");
+    const nav_header = document.querySelector(".header");
 
-  if (mobile_nav && nav_header) {
-    mobile_nav.addEventListener("click", () => {
-      nav_header.classList.toggle("active");
-    });
-  }
-});
-
+    if (mobile_nav && nav_header) {
+      mobile_nav.addEventListener("click", () => {
+        nav_header.classList.toggle("active");
+      });
+    }
+  });
 
 window.addEventListener("load", () => {
-
   /* ================= HERO ================= */
   const hero = document.querySelector(".hero");
   if (hero) hero.classList.add("loaded");
 
-
   /* ================= PORTFOLIO AUTOPLAY ================= */
 
-  const slider = document.querySelector('.portfolio-grid');
-  const slides = document.querySelectorAll('.portfolio-item');
+  const slider = document.querySelector(".portfolio-grid");
+  const slides = document.querySelectorAll(".portfolio-item");
 
   if (!slider || slides.length === 0) return;
 
@@ -43,18 +40,23 @@ window.addEventListener("load", () => {
 
     slider.scrollTo({
       left: current * slideWidth,
-      behavior: 'smooth'
+      behavior: "smooth",
     });
   }
 
   let auto = setInterval(autoPlay, interval);
 
-  slider.addEventListener('mouseenter', () => clearInterval(auto));
-  slider.addEventListener('mouseleave', () => auto = setInterval(autoPlay, interval));
-  slider.addEventListener('touchstart', () => clearInterval(auto));
-  slider.addEventListener('touchend', () => auto = setInterval(autoPlay, interval));
+  slider.addEventListener("mouseenter", () => clearInterval(auto));
+  slider.addEventListener(
+    "mouseleave",
+    () => (auto = setInterval(autoPlay, interval)),
+  );
+  slider.addEventListener("touchstart", () => clearInterval(auto));
+  slider.addEventListener(
+    "touchend",
+    () => (auto = setInterval(autoPlay, interval)),
+  );
 });
-
 
 /* ================= CURSOR EFFECT ================= */
 
@@ -67,7 +69,7 @@ if (cursor) {
     cursor.style.top = e.clientY + "px";
   });
 
-  targets.forEach(el => {
+  targets.forEach((el) => {
     el.addEventListener("mouseenter", () => {
       cursor.style.transform = "translate(-50%, -50%) scale(1)";
     });
@@ -76,12 +78,12 @@ if (cursor) {
       cursor.style.transform = "translate(-50%, -50%) scale(0)";
     });
   });
-}// ================= SCROLL REVEAL =================
+} // ================= SCROLL REVEAL =================
 
 const reveals = document.querySelectorAll(".reveal");
 
 const revealOnScroll = () => {
-  reveals.forEach(el => {
+  reveals.forEach((el) => {
     const windowHeight = window.innerHeight;
     const elementTop = el.getBoundingClientRect().top;
     const revealPoint = 120;
@@ -95,8 +97,33 @@ const revealOnScroll = () => {
 window.addEventListener("scroll", revealOnScroll);
 revealOnScroll();
 
-fetch("common/footer.html")
-.then(res => res.text())
-.then(data => {
-  document.getElementById("footer").innerHTML = data;
+
+document.querySelectorAll(".image-slider").forEach((slider) => {
+  const images = slider.querySelectorAll("img");
+  let index = 0;
+
+  setInterval(() => {
+    images[index].classList.remove("active");
+    index = (index + 1) % images.length;
+    images[index].classList.add("active");
+  }, 6000);
 });
+
+window.addEventListener("scroll", revealOnScroll);
+revealOnScroll(); // run once on page load
+
+// Always load page from top on refresh
+window.onbeforeunload = function () {
+  window.scrollTo(0, 0);
+};
+
+window.onload = function () {
+  window.scrollTo(0, 0);
+};
+
+fetch("../common/footer.html")
+  .then((res) => res.text())
+  .then((data) => {
+    document.getElementById("footer").innerHTML = data;
+  });
+

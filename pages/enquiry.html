@@ -1,25 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Enquiry | VD Photography</title>
-    
+
     <link rel="stylesheet" href="../css/common.css">
     <link rel="stylesheet" href="../css/enquiry.css">
-    <link rel="stylesheet" href="../css/home.css">
 </head>
+
 <body>
-
-
-
-        <!-- Header Section-->
-    <div id = "header"></div>
-
-
+    <!-- Header Section-->
+    <div id="header"></div>
 
     <main class="enquiry-main">
-        
+
         <section class="page-header container">
             <h1>GET IN TOUCH</h1>
             <p>Have a project in mind? Fill out the form regarding your inquiry.</p>
@@ -27,11 +23,11 @@
 
         <div class="container">
             <div class="enquiry-layout-grid">
-                
+
                 <div class="left-column">
                     <div class="form-card">
                         <h2>Send us a message</h2>
-                        
+
                         <form action="#" method="POST">
                             <div class="form-row">
                                 <label for="name">Name *</label>
@@ -64,7 +60,8 @@
 
                             <div class="form-row">
                                 <label for="message">Tell us about your requirements *</label>
-                                <textarea id="message" name="message" rows="6" placeholder="Details about venue, style, etc..." required></textarea>
+                                <textarea id="message" name="message" rows="6"
+                                    placeholder="Details about venue, style, etc..." required></textarea>
                             </div>
 
                             <button type="submit" class="btn-submit">Submit Enquiry</button>
@@ -73,10 +70,10 @@
                 </div>
 
                 <div class="right-column">
-                    
+
                     <div class="contact-details-box">
                         <h3>Contact Information</h3>
-                        
+
                         <div class="detail-item">
                             <span class="icon">✉️</span>
                             <div>
@@ -106,25 +103,24 @@
 
                     <div class="quick-response-card">
                         <h3>⚡ Quick Response</h3>
-                        <p>We typically respond to all enquiries within 24 hours during business days. For urgent matters, please call us directly.</p>
+                        <p>We typically respond to all enquiries within 24 hours during business days. For urgent
+                            matters, please call us directly.</p>
                     </div>
 
                 </div>
             </div>
         </div>
     </main>
-    <footer>
-       <!--footer-->
-    <div id ="footer"></div>
-    </footer>
-<script>
-    fetch("../common/header.html")
-        .then(res => res.text())
-        .then(data => document.getElementById("header").innerHTML = data);
+  <!-- FOOTER -->
+  <div id="footer"></div>
 
-    fetch("../common/footer.html")
-        .then(res => res.text())
-        .then(data => document.getElementById("footer").innerHTML = data);
-</script>
+  <!-- ICONS -->
+  <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+
+  <!-- MAIN JS -->
+  <script src="/js/main.js"></script>
+
 </body>
-</html> 
+
+</html>

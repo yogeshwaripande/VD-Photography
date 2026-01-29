@@ -46,13 +46,17 @@ body {
 }
 
 .services-container {
-  max-width: 1400px;          /* balanced width */
-  margin: 0 auto;             /* center container */
+  max-width: 1400px;
+  /* balanced width */
+  margin: 0 auto;
+  /* center container */
   padding: 0 20px;
 
   display: grid;
-  grid-template-columns: repeat(3, 1fr);  /* FORCE 3 cards per row */
-  gap: 40px;                   /* better spacing */
+  grid-template-columns: repeat(3, 1fr);
+  /* FORCE 3 cards per row */
+  gap: 40px;
+  /* better spacing */
 }
 
 /* Tablet */
@@ -80,7 +84,7 @@ body {
 
 .service-card:hover {
   transform: translateY(-10px);
-  box-shadow: 0 15px 30px rgba(0,0,0,0.12);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.12);
 }
 
 /* IMAGE SLIDER */
@@ -88,11 +92,13 @@ body {
 .image-slider {
   position: relative;
   width: 100%;
-  height: 260px;              /* FIXED HEIGHT */
+  height: 260px;
+  /* FIXED HEIGHT */
   overflow: hidden;
   border-radius: 6px;
   margin-bottom: 18px;
-  background-color: #eee;     /* fallback background */
+  background-color: #eee;
+  /* fallback background */
 }
 
 .image-slider img {
@@ -100,8 +106,10 @@ body {
   inset: 0;
   width: 100%;
   height: 100%;
-  object-fit: cover;          /* KEY FIX */
-  object-position: center;    /* CENTER IMAGE */
+  object-fit: cover;
+  /* KEY FIX */
+  object-position: center;
+  /* CENTER IMAGE */
   opacity: 0;
   transition: opacity 2.5s ease-in-out;
 }
@@ -138,11 +146,13 @@ body {
 
 .star {
   font-size: 18px;
-  color: #ccc;          /* empty star */
+  color: #ccc;
+  /* empty star */
 }
 
 .star.filled {
-  color: #f4b400;       /* golden star */
+  color: #f4b400;
+  /* golden star */
 }
 
 /* ================= SCROLL ANIMATION ================= */
