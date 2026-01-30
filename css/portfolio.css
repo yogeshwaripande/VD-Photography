@@ -140,20 +140,78 @@ input {
 #wedding:checked~.gallery .landscape {
     display: none;
 }
-
-/* 📱 MOBILE */
 @media (max-width: 600px) {
+
+    .portfolio {
+        padding: 30px 15px;
+    }
+
     h1 {
         font-size: 32px;
+    }
+
+    .subtitle {
+        font-size: 14px;
+        line-height: 1.5;
+    }
+
+    /* FILTERS */
+    .filters {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 8px;
+        margin-bottom: 25px;
     }
 
     .filters label {
         font-size: 12px;
         padding: 6px 12px;
+        border-radius: 4px;
+    }
+
+    /* 🔥 GALLERY → single column */
+    .gallery {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+
+    /* CARD */
+    .card {
+        text-align: left;
+    }
+
+    /* IMAGE FULL WIDTH */
+    .img-box {
+        border-radius: 8px;
+    }
+
+    .img-box img {
+        width: 100%;
+        height: auto;
+        object-fit: cover;
+    }
+
+    /* TITLE */
+    .card h3 {
+        font-size: 20px;
+        margin: 12px 0 4px;
+    }
+
+    /* CATEGORY */
+    .card span {
+        font-size: 12px;
+        letter-spacing: 1px;
+        color: #666;
+    }
+
+    /* hover zoom remove on mobile */
+    .img-box:hover {
+        transform: none;
     }
 }
 
-/* 📱 TABLET */
+ /* 📱 TABLET  */
 @media (max-width: 900px) {
     h1 {
         font-size: 40px;
