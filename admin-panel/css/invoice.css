@@ -1,0 +1,234 @@
+/* ==========================================================
+   १. पेज सेटअप (Global & Page Setup)
+   ========================================================== */
+* { 
+    box-sizing: border-box; 
+    margin: 0; 
+    padding: 0; 
+}
+
+body { 
+    font-family: 'Segoe UI', Arial, sans-serif; 
+    background: #f4f4f4; 
+    padding: 20px 0; 
+}
+
+#invoiceArea {
+    width: 210mm; 
+    min-height: 296mm; 
+    margin: 0 auto; 
+    background: #fff;
+    display: flex; 
+    flex-direction: column;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+/* ==========================================================
+   २. हेडर (Header)
+   ========================================================== */
+.main-header {
+    background: #000; 
+    color: #fff;
+    padding: 0 50px;
+    height: 130px; 
+    display: flex;
+    align-items: center; 
+}
+
+.header-content { 
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+    width: 100%; 
+}
+
+.header-left { 
+    display: flex; 
+    align-items: center; 
+    gap: 20px; 
+}
+
+.company-logo { 
+    height: 80px; 
+    width: auto;
+    filter: brightness(100); 
+}
+
+.header-right { 
+    text-align: right; 
+}
+
+.header-right h2 { 
+    font-size: 28px; 
+    letter-spacing: 3px; 
+    margin-bottom: 5px;
+}
+
+/* ==========================================================
+   ३. कंटेंट बॉडी (Content & Info)
+   ========================================================== */
+.content-body { 
+    padding: 30px 50px; 
+    flex-grow: 1; 
+}
+
+.info-grid { 
+    display: flex; 
+    justify-content: space-between; 
+    margin-bottom: 30px; 
+}
+
+.info-box h3 { 
+    font-size: 11px; 
+    color: #888; 
+    margin-bottom: 8px;
+    text-transform: uppercase;
+}
+
+.info-box p { 
+    font-size: 14px; 
+    color: #333; 
+    margin-bottom: 3px; 
+}
+
+.section-header {
+    background: #f8f8f8; 
+    padding: 10px 15px;
+    font-size: 13px; 
+    font-weight: bold; 
+    margin-bottom: 15px;
+    border-left: 4px solid #000;
+}
+
+/* ==========================================================
+   ४. टेबल (Table Styling)
+   ========================================================== */
+.invoice-table { 
+    width: 100%; 
+    border-collapse: collapse; 
+    margin-bottom: 30px; 
+}
+
+.invoice-table th { 
+    border-bottom: 2px solid #000; 
+    padding: 12px 0; 
+    text-align: left; 
+    font-size: 12px;
+    text-transform: uppercase;
+}
+
+.invoice-table td { 
+    padding: 12px 0; 
+    border-bottom: 1px solid #eee; 
+    font-size: 14px; 
+    color: #444;
+}
+
+.text-right { 
+    text-align: right; 
+}
+
+/* ==========================================================
+   ५. पेमेंट आणि टोटल (Totals & Payments) - UPDATED
+   ========================================================== */
+.bottom-grid { 
+    display: flex;
+    justify-content: space-between; 
+    gap: 40px;
+    margin-top: 30px;
+}
+
+.terms-box {
+    width: 55%;
+}
+
+.totals-box { 
+    width: 40%;
+    background: #fcfcfc;
+    padding: 15px;
+    border-radius: 5px;
+}
+
+.total-row { 
+    display: flex; 
+    justify-content: space-between; 
+    font-size: 14px; 
+    padding: 6px 0;
+    color: #555;
+}
+
+/* Grand Total Highlight */
+.grand-total-row {
+    display: flex; 
+    justify-content: space-between;
+    font-weight: 800;
+    font-size: 16px;
+    color: #000;
+    border-top: 1px solid #ddd;
+    margin-top: 5px;
+    padding-top: 10px;
+}
+
+/* Paid Amount - Green */
+.paid-amount {
+    color: #1a7f37; /* Forest Green */
+    font-weight: bold;
+}
+
+/* Remaining Amount - Red & Bold */
+.remaining-amount {
+    display: flex; 
+    justify-content: space-between;
+    margin-top: 10px;
+    padding: 10px;
+    background: #fff5f5; /* Light Red Background */
+    border: 1px dashed #e53e3e;
+    color: #e53e3e; /* Bright Red */
+    font-weight: 800;
+    font-size: 18px;
+    border-radius: 4px;
+}
+
+/* ==========================================================
+   ६. फूटर आणि बटन्स (Footer & Buttons)
+   ========================================================== */
+.main-footer { 
+    background: #000; 
+    color: #fff; 
+    padding: 25px 50px; 
+    text-align: center;
+    margin-top: auto; 
+}
+
+.footer-content h3 { 
+    font-size: 14px; 
+    letter-spacing: 2px; 
+}
+
+.action-buttons { 
+    max-width: 210mm; 
+    margin: 10px auto; 
+    display: flex; 
+    justify-content: flex-end; 
+    gap: 10px; 
+}
+
+.btn { 
+    padding: 10px 20px; 
+    border-radius: 4px; 
+    cursor: pointer; 
+    font-weight: bold; 
+    border: none; 
+    font-size: 12px;
+    transition: 0.3s;
+}
+
+.btn-dark { background: #000; color: #fff; }
+.btn-outline { background: #fff; border: 1px solid #ccc; }
+.btn:hover { opacity: 0.8; }
+
+@media print { 
+    .no-print { display: none !important; } 
+    body { background: #fff; padding: 0; }
+    #invoiceArea { box-shadow: none; margin: 0; width: 100%; }
+}

@@ -1,0 +1,219 @@
+/* --- General Reset --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+}
+
+body {
+    background-color: #f8f9fa;
+    color: #333;
+}
+
+/* --- Navbar Styling --- */
+.navbar {
+    display: flex;
+    background-color: #ffffff;
+    border-bottom: 1px solid #ddd;
+    height: 60px;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.nav-item {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    border: none;
+    border-right: 1px solid #eee;
+    font-size: 14px;
+    font-weight: 500;
+    color: #555;
+    background: #fff;
+    transition: all 0.3s ease;
+    outline: none;
+}
+
+.nav-item.active {
+    background-color: #3d3a43 !important;
+    color: #ffffff !important;
+}
+
+.nav-item:hover:not(.active) {
+    background-color: #f1f1f1;
+}
+
+/* --- Container --- */
+.container {
+    padding: 30px;
+    max-width: 1400px;
+    margin: auto;
+}
+
+/* --- Updated Headers Section (Centering Logic) --- */
+.header-section {
+    display: grid; 
+    /* 3 Columns: 1fr (left space) | auto (middle title) | 1fr (right buttons) */
+    grid-template-columns: 1fr auto 1fr; 
+    align-items: center;
+    margin-bottom: 30px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #eee;
+}
+
+.title {
+    grid-column: 2; /* Title la center column madhe fix karte */
+    font-size: 26px;
+    font-weight: 700;
+    color: #1a1a1a;
+    text-align: center;
+    white-space: nowrap;
+    letter-spacing: -0.5px;
+}
+
+/* --- Management Toggle Switches (Right Side) --- */
+.management-toggle {
+    grid-column: 3; /* Buttons na ujvya side chya column madhe takte */
+    display: flex;
+    justify-content: flex-end; /* Column chya aat right alignment */
+    background: #e9ecef;
+    padding: 5px;
+    border-radius: 50px;
+    width: fit-content;
+    margin-left: auto; /* Absolute right alignment sathi */
+    box-shadow: inset 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.toggle-btn {
+    border: none;
+    padding: 10px 24px;
+    border-radius: 50px;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 600;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    background: transparent;
+    color: #666;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* Click kelyavar dark black color yenar */
+.toggle-btn.active {
+    background: #111 !important;
+    color: #fff !important;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.25);
+}
+
+.toggle-btn:hover:not(.active) {
+    color: #111;
+}
+
+/* --- Photo Grid System --- */
+#main-photo-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); 
+    gap: 25px;
+}
+
+.photo-card {
+    background: white;
+    position: relative;
+    overflow: hidden;
+    border: 1px solid #eee;
+    border-radius: 8px;
+    transition: all 0.4s ease;
+}
+
+.photo-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.12);
+}
+
+.photo-card img {
+    width: 100%;
+    height: 400px; 
+    object-fit: cover;
+    display: block;
+    transition: transform 0.6s ease;
+}
+
+.photo-card:hover img {
+    transform: scale(1.05); /* Subtle zoom on hover */
+}
+
+/* --- Photo Info Overlay (Video Style) --- */
+.photo-info {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
+    color: white;
+    padding: 20px 15px;
+    font-size: 14px;
+    opacity: 0.9;
+}
+
+.photo-info p {
+    margin: 0;
+    font-weight: 500;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.5);
+}
+
+.badge {
+    display: inline-block;
+    background: #ffd700;
+    color: #000;
+    padding: 3px 10px;
+    border-radius: 4px;
+    font-size: 10px;
+    font-weight: 800;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* --- Tab Management & Animations --- */
+.tab-content {
+    display: none;
+    animation: fadeIn 0.5s ease-out;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(15px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* --- Responsive Adjustments --- */
+@media (max-width: 1000px) {
+    .header-section {
+        grid-template-columns: 1fr; /* Stack on mobile */
+        text-align: center;
+    }
+    .title {
+        grid-column: 1;
+        margin-bottom: 20px;
+    }
+    .management-toggle {
+        grid-column: 1;
+        margin: 0 auto;
+    }
+}
+
+@media (max-width: 768px) {
+    .container { padding: 20px; }
+    .navbar { height: auto; flex-wrap: wrap; }
+    .nav-item { flex: 1 1 50%; padding: 15px; font-size: 12px; }
+    #main-photo-grid { grid-template-columns: 1fr; }
+    .photo-card img { height: 300px; }
+}

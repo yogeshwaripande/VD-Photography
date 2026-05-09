@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin - Manage Portfolio</title>
+    
+    <link rel="stylesheet" href="../css/adminheader.css">
+    <link rel="stylesheet" href="../css/manage_portfolio.css">
+</head>
+
+<body>
+
+    <nav class="navbar">
+        <button type="button" class="nav-item active">📸 Photos</button>
+        <button type="button" class="nav-item" onclick="window.location.href='../admin-panel/pages/index.html'">📄 Bills & Quotations</button>
+        <button type="button" class="nav-item" onclick="window.location.href='../frontend/orders.html'">💰 Orders & Expenses</button>
+        <button type="butorders.htmlton" class="nav-item" onclick="window.location.href='booking.html'">📅 Bookings</button>
+        <button type="button" class="nav-item" onclick="window.location.href='../frontend/all-orders.html'">💰 All Orders</button>
+    </nav>
+
+    <div class="container">
+
+        <div class="header-row">
+            <div class="header-left">
+                <div class="management-toggle">
+                    <button type="button" id="togglePortfolio" class="toggle-btn active" onclick="switchView('portfolio')">👤 Portfolio</button>
+                    <button type="button" id="toggleEvents" class="toggle-btn" onclick="switchView('events')">📅 Events</button>
+                </div>
+            </div>
+
+            <div class="header-center">
+                <h1 id="dynamicTitle" class="dynamicTitle">Manage Portfolio</h1>
+            </div>
+
+            <div class="header-right">
+                <button type="button" id="backBtn" class="action-btn" style="display:none;" onclick="goBackToAlbums()">
+                    ← BACK
+                </button>
+
+                <button type="button" id="uploadActionBtn" class="action-btn" onclick="toggleModal(true)">
+                    + UPLOAD PORTFOLIO PHOTO
+                </button>
+            </div>
+        </div>
+
+        <hr class="separator">
+
+        <div id="albumListView" class="view active">
+            <div class="gallery-grid" id="albumGrid">
+                </div>
+        </div>
+
+        <div id="albumDetailView" class="view">
+            <div class="gallery-grid" id="photosGrid">
+                </div>
+        </div>
+
+    </div>
+
+    <div id="albumModal" class="modal">
+        <div class="modal-content">
+            <h2 id="modalTitle">Upload Portfolio Photos</h2>
+
+            <form id="albumForm">
+                <div class="form-group">
+                    <label>Select Category</label>
+                    <select id="albumCategory" onchange="checkOtherCategory(this.value)" required>
+                        <option value="" disabled selected>-- Choose Category --</option>
+                        <option value="Wedding">Wedding</option>
+                        <option value="Engagement">Engagement</option>
+                        <option value="Pre-Wedding">Pre-Wedding</option>
+                        <option value="Maternity">Maternity</option>
+                        <option value="Baby Shower">Baby Shower</option>
+                        <option value="Birthday">Birthday</option>
+                        <option value="Cinematography">Cinematography</option>
+                        <option value="Other">-- Other (Type New) --</option>
+                    </select>
+                </div>
+
+                <div class="form-group" id="otherCategoryGroup" style="display: none;">
+                    <label>Type New Category</label>
+                    <input type="text" id="otherCategoryInput" placeholder="e.g. Corporate Shoot">
+                </div>
+
+                <div class="form-group">
+                    <label>Upload Photos (Multiple allowed)</label>
+                    <div class="file-upload-container">
+                        <input type="file" id="photoInput" multiple accept="image/*" required>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="cancel-btn" onclick="toggleModal(false)">Cancel</button>
+                    <button type="submit" class="submit-btn" id="uploadBtn">Upload ALL</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="../js/managePortfolio.js"></script>
+    <script>
+        // Modal Control
+        function toggleModal(show) {
+            const modal = document.getElementById("albumModal");
+            if (modal) {
+                modal.style.display = show ? "flex" : "none";
+            }
+        }
+
+        // Dropdown Logic
+        function checkOtherCategory(val) {
+            const otherGroup = document.getElementById('otherCategoryGroup');
+            if(otherGroup) {
+                otherGroup.style.display = (val === 'Other') ? 'block' : 'none';
+            }
+        }
+
+        // View Switching (Portfolio vs Events)
+        function switchView(view) {
+            if (view === 'events') {
+                window.location.href = "manage_event.html";
+            } else {
+                window.location.href = "manage_portfolio.html";
+            }
+        }
+
+        // Header reset when clicking Navbar Photo item
+        document.querySelector('.nav-item.active').onclick = function() {
+            location.reload();
+        };
+    </script>
+</body>
+</html>

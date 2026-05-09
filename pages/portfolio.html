@@ -1,106 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Photography Portfolio</title>
 
-    <link rel="stylesheet" href="../css/common.css">
     <link rel="stylesheet" href="../css/portfolio.css">
-    
+    <link rel="stylesheet" href="../css/common.css">
 </head>
-
 <body>
 
-    <!-- HEADER -->
     <div id="header"></div>
 
     <section class="portfolio">
-
         <h1>PORTFOLIO</h1>
         <p class="subtitle">Explore our collection of professional photography work</p>
 
-        <!-- FILTER INPUTS -->
-        <input type="radio" name="filter" id="all" checked>
-        <input type="radio" name="filter" id="portrait">
-        <input type="radio" name="filter" id="event">
-        <input type="radio" name="filter" id="commercial">
-        <input type="radio" name="filter" id="landscape">
-        <input type="radio" name="filter" id="wedding">
-
-        <!-- FILTER BUTTONS -->
-        <div class="filters">
-            <label for="all">All</label>
-            <label for="portrait">Portrait</label>
-            <label for="event">Event</label>
-            <label for="commercial">Commercial</label>
-            <label for="landscape">Landscape</label>
-            <label for="wedding">Wedding</label>
+        <div class="filters" id="filter-buttons">
+            <button class="filter-btn active" data-filter="all">All</button>
+            <button class="filter-btn" data-filter="Wedding">Wedding</button>
+            <button class="filter-btn" data-filter="Pre-Wedding">Pre-Wedding</button>
+            <button class="filter-btn" data-filter="Modal Shoot">Modal Shoot</button>
+            <button class="filter-btn" data-filter="Event">Event</button>
+            <button class="filter-btn" data-filter="Commercial">Commercial</button>
         </div>
 
-        <!-- GALLERY -->
-        <div class="gallery">
-
-            <div class="card event">
-                <div class="img-box">
-                    <a href="../pages/UrbanEchoes.html"> <img src="../images/portfolio/photography1.jpg"></a>
-                </div>
-                <h3>Urban Echoes</h3>
-                <span>EVENT</span>
+        <div class="gallery" id="portfolio-gallery">
             </div>
-
-            <div class="card landscape">
-                <div class="img-box">
-                    <a href="../pages/SilentSentinel.html"><img src="../images/portfolio/photography2.jpg"></a>
-                </div>
-                <h3>Silent Sentinel</h3>
-                <span>LANDSCAPE</span>
-            </div>
-
-            <div class="card portrait">
-                <div class="img-box">
-                    <a href="../pages/protraitofThoughts.html"> <img src="../images/portfolio/photography3.jpg"></a>
-                </div>
-                <h3>Portrait of Thought</h3>
-                <span>PORTRAIT</span>
-            </div>
-
-            <div class="card commercial">
-                <div class="img-box">
-                    <a href="../pages/modernlines.html"> <img src="../images/portfolio/photography4.jpg"></a>
-                </div>
-                <h3>Modern Lines</h3>
-                <span>COMMERCIAL</span>
-            </div>
-
-            <div class="card wedding">
-                <div class="img-box">
-                    <a href="../pages/foreverTogether.html"> <img src="../images/portfolio/photography5.jpg"></a>
-                </div>
-                <h3>Forever Together</h3>
-                <span>WEDDING</span>
-            </div>
-
-            <div class="card wedding">
-                <div class="img-box">
-                    <a href="../pages/urban.html"> <img src="../images/portfolio/photography10.png"></a>
-                </div>
-                <h3>Urban Echoes</h3>
-                <span>STREET PHOTOGRAPHY</span>
-            </div>
-        </div>
     </section>
 
-    <!-- FOOTER -->
     <div id="footer"></div>
 
-  <!-- ICONS -->
-  <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
-  <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
-
-  <!-- MAIN JS -->
-  <script src="../js/main.js"></script>
-
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    
+    <script src="../js/portfolio.js"></script>
+    <script src="../js/main.js"></script>
 </body>
-
 </html>

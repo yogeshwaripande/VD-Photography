@@ -1,0 +1,212 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quotation View | VD Photography</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f4f4f4; margin: 0; padding: 20px; }
+        .no-print { display: flex; justify-content: flex-end; gap: 10px; max-width: 800px; margin: 0 auto 20px; }
+        .btn { padding: 8px 16px; border-radius: 4px; border: none; font-weight: bold; cursor: pointer; text-transform: uppercase; font-size: 12px; }
+        .btn-back { background: #ccc; }
+        .btn-update { background: #28a745; color: white; }
+        .btn-download { background: #000; color: white; }
+
+        .invoice-card { background: white; max-width: 800px; margin: 0 auto; box-shadow: 0 0 20px rgba(0,0,0,0.1); min-height: 1000px; display: flex; flex-direction: column; }
+        header { background: #000; color: #fff; padding: 40px; display: flex; justify-content: space-between; align-items: center; }
+        .logo-section img { height: 60px; }
+        .title-section { text-align: right; }
+        .title-section h1 { margin: 0; font-size: 30px; letter-spacing: 5px; }
+        
+        .details-section { padding: 40px; display: flex; justify-content: space-between; }
+        .details-section h4 { color: #888; font-size: 11px; margin-bottom: 5px; text-transform: uppercase; }
+        
+        .items-table { width: 100%; border-collapse: collapse; padding: 0 40px; margin-bottom: 30px; }
+        .items-table th { border-bottom: 2px solid #000; padding: 10px 40px; text-align: left; font-size: 13px; }
+        .items-table td { padding: 15px 40px; border-bottom: 1px solid #eee; font-size: 14px; }
+
+        .payment-summary { padding: 0 40px; display: flex; justify-content: space-between; align-items: flex-start; }
+        .logs-box { width: 55%; }
+        .summary-box { width: 35%; text-align: right; }
+        
+        .history-table { width: 100%; font-size: 11px; border-collapse: collapse; }
+        .history-table th { border-bottom: 1px solid #ddd; text-align: left; padding: 5px; color: #666; }
+        .history-table td { padding: 8px 5px; border-bottom: 1px solid #f9f9f9; }
+
+        .grand-total-row { font-size: 22px; font-weight: bold; border-top: 2px solid #000; margin-top: 10px; padding-top: 10px; }
+
+        footer { background: #000; color: #fff; text-align: center; padding: 20px; margin-top: auto; }
+        
+        /* Modal */
+        .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 100; }
+        .modal-content { background: #fff; width: 300px; margin: 100px auto; padding: 20px; border-radius: 8px; text-align: center; }
+        .modal-content input, .modal-content select { width: 100%; padding: 10px; margin: 10px 0; box-sizing: border-box; }
+    </style>
+</head>
+<body>
+
+    <div class="no-print">
+        <button class="btn btn-back" onclick="window.history.back()">Back</button>
+        <button class="btn btn-update" onclick="document.getElementById('payModal').style.display='block'">Update Payment</button>
+        <button class="btn btn-download" onclick="downloadPDF()">Download PDF</button>
+    </div>
+
+    <div id="payModal" class="modal no-print">
+        <div class="modal-content">
+            <h3>Add Payment</h3>
+            <select id="m_mode"><option>Cash</option><option>Online</option></select>
+            <input type="number" id="m_amount" placeholder="Enter Amount">
+            <button class="btn btn-update" style="width:100%" onclick="addPayment()">Save</button>
+            <button class="btn" style="width:100%; margin-top:5px;" onclick="document.getElementById('payModal').style.display='none'">Cancel</button>
+        </div>
+    </div>
+
+    <div class="invoice-card" id="invoice">
+        <header>
+            <div class="logo-section">
+                <img src="../images/IMG_5235.PNG" alt="Logo" onerror="this.style.display='none'">
+            </div>
+            <div class="title-section">
+                <h1>QUOTATION</h1>
+                <div id="q_no" style="font-weight: bold; opacity: 0.8;">#QTN-000</div>
+            </div>
+        </header>
+
+        <div class="details-section">
+            <div>
+                <h4>Client Details</h4>
+                <div id="q_name" style="font-size: 18px; font-weight: bold;">-</div>
+                <div id="q_phone">-</div>
+                <div id="q_loc">-</div>
+            </div>
+            <div style="text-align: right;">
+                <h4>Booking Info</h4>
+                <div>Date: <b id="q_date">-</b></div>
+                <div>Event: <b id="q_event">-</b></div>
+            </div>
+        </div>
+
+        <table class="items-table">
+            <thead>
+                <tr><th>DESCRIPTION</th><th style="text-align: right;">QTY</th></tr>
+            </thead>
+            <tbody id="q_items"></tbody>
+        </table>
+
+        <div class="payment-summary">
+            <div class="logs-box">
+                <h4 style="margin-bottom: 10px; color:#000">Payment Logs:</h4>
+                <table class="history-table">
+                    <thead><tr><th>Date & Time</th><th>Mode</th><th style="text-align: right;">Amount</th></tr></thead>
+                    <tbody id="q_logs"></tbody>
+                </table>
+            </div>
+            <div class="summary-box">
+                <div style="color: #666; margin-bottom: 5px;">Sub-Total: <span id="q_sub">₹0</span></div>
+                <div style="color: #666; margin-bottom: 5px;">Discount (-): <span id="q_disc">₹0</span></div>
+                <div class="grand-total-row">
+                    GRAND TOTAL: <span id="q_grand">₹0</span>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <div style="font-weight: bold; letter-spacing: 1px;">VD PHOTOGRAPHY & FILMS</div>
+            <div style="font-size: 10px; opacity: 0.7; margin-top: 5px;">Phone: 7218351397 | Email: sbyved@gmail.com</div>
+        </footer>
+    </div>
+
+    <script>
+        let currentQtn = null;
+
+        window.onload = function() {
+            currentQtn = JSON.parse(localStorage.getItem("quotation_view"));
+            if (!currentQtn) { window.history.back(); return; }
+            renderData();
+        };
+
+        function renderData() {
+            document.getElementById("q_no").innerText = "#" + currentQtn.qtnNo;
+            document.getElementById("q_name").innerText = currentQtn.custName;
+            document.getElementById("q_phone").innerText = currentQtn.phone;
+            document.getElementById("q_loc").innerText = currentQtn.location;
+            document.getElementById("q_date").innerText = currentQtn.eventDate;
+            document.getElementById("q_event").innerText = currentQtn.eventType;
+
+            // Items
+            const itemBody = document.getElementById("q_items");
+            itemBody.innerHTML = "";
+            currentQtn.items.forEach(i => {
+                itemBody.innerHTML += `<tr><td>${i.itemName}</td><td style="text-align: right;">${i.quantity}</td></tr>`;
+            });
+
+            // Logs
+            const logBody = document.getElementById("q_logs");
+            logBody.innerHTML = "";
+            let totalPaid = 0;
+            (currentQtn.payments || []).forEach(p => {
+                totalPaid += parseFloat(p.amount);
+                logBody.innerHTML += `<tr><td>${p.date}</td><td>${p.mode}</td><td style="text-align: right;">₹${p.amount}</td></tr>`;
+            });
+
+            // Calculations
+            const sub = parseFloat(currentQtn.subTotal) || 0;
+            const discPercent = parseFloat(currentQtn.discount) || 0;
+            const discAmt = (sub * discPercent) / 100;
+            
+            // FORMULA: Grand Total = Final Bill Amount - Total Paid Amount
+            // Jar tula fakt bill amount pahije asel tar totalPaid minus karu nako. 
+            // Pan image pramane TOTAL bill madhun paid minus houn urleli rakka 'Grand Total' madhe disavi as watat asel tar:
+            const finalRemaining = (sub - discAmt) - totalPaid;
+
+            document.getElementById("q_sub").innerText = "₹" + sub.toLocaleString();
+            document.getElementById("q_disc").innerText = "₹" + discAmt.toLocaleString();
+            document.getElementById("q_grand").innerText = "₹" + finalRemaining.toLocaleString();
+        }
+
+        function addPayment() {
+            const amt = document.getElementById("m_amount").value;
+            const mode = document.getElementById("m_mode").value;
+            if(!amt) return;
+
+            const newPay = {
+                date: new Date().toLocaleString(),
+                mode: mode,
+                amount: amt
+            };
+
+            if(!currentQtn.payments) currentQtn.payments = [];
+            currentQtn.payments.push(newPay);
+
+            // Save back
+            localStorage.setItem("quotation_view", JSON.stringify(currentQtn));
+            
+            // Also update main list
+            let all = JSON.parse(localStorage.getItem("quotations")) || [];
+            let idx = all.findIndex(x => x.id === currentQtn.id);
+            if(idx !== -1) {
+                all[idx] = currentQtn;
+                localStorage.setItem("quotations", JSON.stringify(all));
+            }
+
+            document.getElementById('payModal').style.display='none';
+            document.getElementById("m_amount").value = "";
+            renderData();
+        }
+
+        function downloadPDF() {
+            const element = document.getElementById('invoice');
+            html2pdf().from(element).set({
+                margin: 0,
+                filename: `Quotation_${currentQtn.qtnNo}.pdf`,
+                html2canvas: { scale: 2 },
+                jsPDF: { unit: 'in', format: 'a4', orientation: 'portrait' }
+            }).save();
+        }
+    </script>
+</body>
+</html>

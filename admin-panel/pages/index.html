@@ -1,0 +1,291 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Photography Business Manager</title>
+
+    <link rel="stylesheet" href="/css/adminheader.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="../css/style.css">
+        <style>
+        :root {
+            --bg-color: #fcfcfc;
+            --card-bg: #ffffff;
+            --text-main: #1a1a1a;
+            --text-muted: #666666;
+            --accent-black: #000000;
+            --border-color: #eeeeee;
+        }
+
+        /* ================= PAGE SCOPE ================= */
+        .bill-page {
+            background: var(--bg-color);
+        }
+
+        .bill-page .main-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 30px 40px;
+        }
+
+        .bill-page .navbar {
+            margin-bottom: 25px;
+        }
+
+        /* ================= HEADER ================= */
+        .dashboard-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 30px;
+        }
+
+        .title-area h1 {
+            margin: 0;
+            font-size: 24px;
+            font-weight: 700;
+        }
+
+        .title-area p {
+            margin: 5px 0 0;
+            color: var(--text-muted);
+            font-size: 14px;
+        }
+
+        .header-actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        .btn {
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            border: 1px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-white { background: #fff; }
+        .btn-black { background: #000; color: #fff; }
+
+        /* ================= STATS ================= */
+      /* ================= STATS GRID ================= */
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 22px;
+    margin-bottom: 30px;
+}
+
+/* ================= STAT CARD ================= */
+.stat-card {
+    padding: 22px;
+    border-radius: 16px;
+
+    background: linear-gradient(145deg, #ffffff, #f9fafc);
+    border: 1px solid #f1f1f1;
+
+    position: relative;
+    overflow: hidden;
+
+    transition: all 0.3s ease;
+}
+
+/* subtle glow border effect */
+.stat-card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 16px;
+    padding: 1px;
+    background: linear-gradient(120deg, rgba(0,0,0,0.05), transparent);
+    -webkit-mask:
+        linear-gradient(#fff 0 0) content-box,
+        linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+            mask-composite: exclude;
+}
+
+/* hover effect */
+.stat-card:hover {
+    transform: translateY(-4px) scale(1.01);
+    box-shadow: 0 12px 28px rgba(0,0,0,0.08);
+}
+
+/* ================= TEXT ================= */
+.stat-card .label {
+    font-size: 12px;
+    color: #7a7a7a;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+}
+
+.stat-card .value {
+    font-size: 26px;
+    font-weight: 700;
+    margin-top: 10px;
+    color: #1a1a1a;
+}
+
+/* ================= ICON ================= */
+.stat-card .icon {
+    position: absolute;
+    right: 18px;
+    top: 18px;
+    font-size: 20px;
+    opacity: 0.25;
+}
+
+/* ================= ACCENT STRIP ================= */
+.stat-card::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 4px;
+    border-radius: 4px 0 0 4px;
+}
+
+/* ================= COLOR VARIANTS ================= */
+.stat-card:nth-child(1) {
+    background: linear-gradient(145deg, #ffffff, #eef4ff);
+}
+.stat-card:nth-child(1)::after {
+    background: #4f8cff;
+}
+
+.stat-card:nth-child(2) {
+    background: linear-gradient(145deg, #ffffff, #f0fff4);
+}
+.stat-card:nth-child(2)::after {
+    background: #34c759;
+}
+
+.stat-card:nth-child(3) {
+    background: linear-gradient(145deg, #ffffff, #fff7ed);
+}
+.stat-card:nth-child(3)::after {
+    background: #ff9f43;
+}
+
+        /* ================= TABS ================= */
+        .tabs-header {
+            display: flex;
+            gap: 25px;
+            border-bottom: 1px solid var(--border-color);
+            margin-bottom: 20px;
+        }
+
+        .tab {
+            padding: 10px 5px;
+            font-weight: 600;
+            cursor: pointer;
+            color: var(--text-muted);
+        }
+
+        .tab.active {
+            color: #000;
+            border-bottom: 2px solid #000;
+        }
+
+        /* ================= LIST ================= */
+        .content-area {
+            background: #fff;
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            min-height: 300px;
+        }
+
+        .data-card {
+            padding: 18px 25px;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .data-card:hover {
+            background: #fafafa;
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <button type="button" class="nav-item" onclick="window.location.href='/pages/manage_portfolio.html'">📸 Photos</button>
+        <button type="button" class="nav-item active">📄 Bills & Quotations</button>
+        <button type="button" class="nav-item" onclick="window.location.href='/frontend/orders.html'">💰 Orders & Expenses</button>
+        <button type="button" class="nav-item" onclick="window.location.href='/pages/booking.html'">📅 Bookings</button>
+        <button type="button" class="nav-item" onclick="window.location.href='/frontend/all-orders.html'">💰 All Orders</button>
+    </nav>
+
+    <div class="main-container">
+        <div class="dashboard-header">
+            <div class="title-area">
+                <h1>Photography Business Manager</h1>
+                <p>Manage your quotations and invoices</p>
+            </div>
+            <div class="header-actions">
+                <button class="btn btn-white" onclick="handleNewEntry('direct_bill')">+ New Invoice</button>
+                <button class="btn btn-black" onclick="handleNewEntry('quotation')">+ New Quotation</button>
+            </div>
+        </div>
+
+        <div class="stats-grid">
+            <div class="stat-card">
+                <span class="label">Total Quotations</span>
+                <span class="value" id="count-qtn">0</span>
+                <i class="fas fa-file-invoice icon"></i>
+            </div>
+            <div class="stat-card">
+                <span class="label">Total Bills</span>
+                <span class="value" id="count-bill">0</span>
+                <i class="fas fa-receipt icon"></i>
+            </div>
+            <div class="stat-card">
+                <span class="label">Total Revenue</span>
+                <span class="value" id="total-revenue">₹0.00</span>
+                <i class="fas fa-wallet icon"></i>
+            </div>
+        </div>
+
+        <div class="tabs-header">
+            <div class="tab" id="tab-qtn" onclick="switchTab('quotation')">Quotations</div>
+            <div class="tab" id="tab-bill" onclick="switchTab('bill')">Invoices</div>
+        </div>
+
+        <div class="content-area" id="listContainer"></div>
+    </div>
+
+    <script src="../js/quotation.list.js"></script>
+    
+    <script>
+        function handleNewEntry(type) {
+            localStorage.removeItem("quotation_edit");
+            localStorage.setItem("flow_type", type);
+            window.location.href = 'create-bill.html';
+        }
+
+        function updateStats() {
+            const data = JSON.parse(localStorage.getItem("quotations")) || [];
+            const qtnCount = data.filter(i => i.status !== 'Converted to Bill').length;
+            const billCount = data.filter(i => i.status === 'Converted to Bill').length;
+            let revenue = 0;
+            data.forEach(i => { if(i.status === 'Converted to Bill') revenue += parseFloat(i.grandTotal || 0); });
+
+            document.getElementById('count-qtn').innerText = qtnCount;
+            document.getElementById('count-bill').innerText = billCount;
+            document.getElementById('total-revenue').innerText = "₹" + revenue.toFixed(2);
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin - Manage Event</title>
+    
+    <link rel="stylesheet" href="../css/adminheader.css">
+    <link rel="stylesheet" href="../css/manage_event.css">
+</head>
+
+<body>
+
+    <nav class="navbar">
+        <button type="button" class="nav-item active">📸 Photos</button>
+        <button type="button" class="nav-item" onclick="window.location.href='../admin-panel/pages/index.html'">📄 Bills & Quotations</button>
+        <button type="button" class="nav-item" onclick="window.location.href='../frontend/orders.html'">💰 Orders & Expenses</button>
+        <button type="butorders.htmlton" class="nav-item" onclick="window.location.href='booking.html'">📅 Bookings</button>
+        <button type="button" class="nav-item" onclick="window.location.href='../frontend/all-orders.html'">💰 All Orders</button>
+    </nav>
+
+    <div class="container">
+
+        <div class="header-row">
+            <div class="header-left">
+                <div class="management-toggle">
+                    <button type="button" id="togglePortfolio" class="toggle-btn" onclick="switchView('portfolio')">👤 Portfolio</button>
+                    <button type="button" id="toggleEvents" class="toggle-btn active" onclick="switchView('events')">📅 Events</button>
+                </div>
+            </div>
+
+            <div class="header-center">
+                <h1 id="dynamicTitle" class="dynamicTitle">Manage Events</h1>
+            </div>
+
+    <div class="header-right" id="headerRightAction">
+        <button type="button" 
+                id="backBtn" 
+                class="action-btn" 
+                style="display:none;" 
+                onclick="goBack()">
+            Back To Customers
+        </button>
+
+       <button type="button" id="uploadActionBtn" class="action-btn" onclick="toggleModal(true)">
+        + UPLOAD EVENT PHOTO
+    </button>
+    </div>
+</div>
+
+
+    <!-- LEVEL 1 - CUSTOMER -->
+    <div id="level1" class="view active">
+        <div id="customerGrid" class="gallery-grid"></div>
+    </div>
+
+    <!-- LEVEL 2 - EVENT TYPE -->
+    <div id="level2" class="view">
+        <div id="eventTypeGrid" class="gallery-grid"></div>
+    </div>
+
+    <!-- LEVEL 3 - GALLERY -->
+    <div id="level3" class="view">
+        <div id="galleryGrid" class="gallery-grid"></div>
+    </div>
+
+</div>
+
+<!-- ================= MODAL - UPLOAD ================= -->
+<div id="eventModal" class="modal">
+    <div class="modal-content">
+    
+        <h2>Upload Event Photos</h2>
+
+        <form id="eventForm">
+
+    <div class="form-group">
+        <label>Customer Name</label>
+        <input type="text"
+               id="customerName"
+               name="customerName" 
+               placeholder="e.g. Rahul Patil"
+               required>
+    </div>
+
+    <div class="form-group">
+        <label>Event Type</label>
+        <select id="eventType"
+                name="eventName" 
+                required
+                onchange="checkOtherEvent(this,'otherEventTypeContainer')">
+            <option value="" disabled selected>-- Select Event Type --</option>
+            <option value="Wedding">Wedding</option>
+            <option value="Engagement">Engagement</option>
+            <option value="Pre-Wedding">Pre-Wedding</option>
+            <option value="Baby Shower">Baby Shower</option>
+            <option value="Birthday">Birthday</option>
+            <option value="Maternity">Maternity</option>
+            <option value="Haldi / Sangeet">Haldi / Sangeet</option>
+            <option value="Other">Other (Manual Entry)</option>
+        </select>
+
+        <div id="otherEventTypeContainer" style="display:none;">
+            <input type="text"
+                   id="otherEventInput"
+                   name="otherEventName"
+                   placeholder="Enter custom event name">
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label>Select photos</label>
+        <input type="file"
+               id="eventPhotoInput"
+               name="photos" 
+               multiple
+               accept="image/*"
+               required>
+    </div>
+
+    <div class="modal-footer">
+        <button type="button" class="cancel-btn" onclick="toggleModal(false)">Cancel</button>
+        <button type="submit" id="uploadBtn" class="submit-btn">Upload All</button>
+    </div>
+
+</form>
+    </div>
+</div>
+
+<!-- JS -->
+<script src="../js/manageEvent.js"></script>
+
+<script>
+function checkOtherEvent(select, containerId) {
+    const container = document.getElementById(containerId);
+    container.style.display =
+        select.value === 'Other' ? 'block' : 'none';
+}
+        // View Switching (Portfolio vs Events)
+function switchView(view) {
+    if (view === 'events') {
+        window.location.href = "manage_event.html";
+    } else {
+        window.location.href = "manage_portfolio.html";
+    }
+}
+</script>
+
+</body>
+</html>

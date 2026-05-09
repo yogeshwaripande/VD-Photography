@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Bill</title>
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+<div class="invoice" id="invoiceArea">
+
+  <h2>🧾 BILL</h2>
+  <p id="date"></p>
+
+  <div id="client"></div>
+
+  <hr>
+
+  <div class="table">
+    <div class="row head">
+      <div>Service</div>
+      <div>Qty</div>
+      <div>Total</div>
+    </div>
+    <div id="items"></div>
+  </div>
+
+  <hr>
+
+  <p>Subtotal: ₹<span id="sub"></span></p>
+  <p>Tax: ₹<span id="tax"></span></p>
+  <p>Discount: ₹<span id="disc"></span></p>
+  <h3>Grand Total: ₹<span id="grand"></span></h3>
+
+</div>
+
+<script>
+window.onload = () => {
+
+  let data = JSON.parse(localStorage.getItem("bill"));
+  if(!data) return;
+
+  document.getElementById("date").innerText =
+    "Date: " + new Date().toLocaleDateString();
+
+  document.getElementById("client").innerHTML = `
+    <p><b>Name:</b> ${data.custName}</p>
+    <p><b>Event:</b> ${data.eventType}</p>
+  `;
+
+  let rows = "";
+  data.items.forEach(i=>{
+    rows += `
+      <div class="row">
+        <div>${i.itemName}</div>
+        <div>${i.quantity}</div>
+        <div>₹${i.total}</div>
+      </div>
+    `;
+  });
+
+  document.getElementById("items").innerHTML = rows;
+
+  document.getElementById("sub").innerText = data.subTotal;
+  document.getElementById("tax").innerText = data.taxAmt;
+  document.getElementById("disc").innerText = data.discAmt;
+  document.getElementById("grand").innerText = data.grandTotal;
+};
+</script>
+
+</body>
+</html>

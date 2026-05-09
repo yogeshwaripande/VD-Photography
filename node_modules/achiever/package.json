@@ -1,0 +1,24 @@
+{
+  "name": "achiever",
+  "version": "1.0.0",
+  "description": "Test Application",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SumitShitole/Achiever.git"
+  },
+  "keywords": [
+    "nodejs",
+    "expressjs",
+    "npm"
+  ],
+  "author": "Sumit Shitole <sumitshitole1994@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SumitShitole/Achiever/issues"
+  },
+  "homepage": "https://github.com/SumitShitole/Achiever#readme"
+}

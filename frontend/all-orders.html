@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>All Orders | Admin</title>
+
+  <link rel="stylesheet" href="/css/adminheader.css">
+  <link rel="stylesheet" href="orders.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+   <link rel="stylesheet" href="../css/manage_portfolio.css">
+  <style>
+    body[data-view="all-orders"] #ordersDashboardSection {
+      display: none !important;
+    }
+  </style>
+</head>
+<body data-view="all-orders">
+
+   
+
+
+    <nav class="navbar">
+        <button type="button" class="nav-item" onclick="window.location.href='../pages/manage_portfolio.html'">📸 Photos</button>
+        <button type="button" class="nav-item" onclick="window.location.href='../admin-panel/pages/index.html'">📄 Bills & Quotations</button>
+        <button type="button" class="nav-item" onclick="window.location.href='../frontend/orders.html'">💰 Orders & Expenses</button>
+        <button type="butorders.htmlton" class="nav-item"  onclick="window.location.href='../pages/booking.html'">📅 Bookings</button>
+        <button type="button" class="nav-item active">💰 All Orders</button>
+    </nav>
+
+
+<div class="panel-gap"></div>
+
+<main class="container">
+    <!-- 🔹 DASHBOARD WRAPPER (TITLE + STATS + FILTER) -->
+  <div id="ordersDashboardSection">
+
+  <div class="title-row">
+    <h2> <img src="../images/Order1.png" alt="" class="tab-icon"></i>Order & Expense Management</h2>
+    <button class="primary-btn" id="addOrderBtn">+ ADD ORDER</button>
+  </div>
+
+  <!-- STATS -->
+  <section class="stats">
+<div class="card black-text strong">
+  <span>Total Orders</span>
+  <strong id="cardTotalOrders">0</strong>
+</div>
+
+<div class="card">
+  <span>Total Revenue</span>
+  <strong id="cardTotalRevenue">₹0</strong>
+</div>
+
+<div class="card green-text strong">
+  <span>Cash Received</span>
+  <strong id="cardCashReceived">₹0</strong>
+</div>
+
+<div class="card blue-text strong">
+  <span>Online Received</span>
+  <strong id="cardOnlineReceived">₹0</strong>
+</div>
+
+<div class="card blue-text strong">
+  <span>Total Expenses</span>
+  <strong id="cardTotalExpenses">₹0</strong>
+</div>
+
+<div class="card green-text strong">
+  <span>Total Profit</span>
+  <strong id="cardTotalProfit">₹0</strong>
+</div>
+
+<div class="card orange-text strong">
+  <span>Pending Receivables</span>
+  <strong id="cardPendingReceivables">₹0</strong>
+</div>
+
+<div class="card" id="pendingEventsCard" style="cursor:pointer;">
+
+  <span>Pending Events</span>
+  <strong id="cardPendingEvents">0</strong>
+</div>
+
+  </section>
+
+  <!-- FILTER -->
+  <section class="filter">
+    <h3><i class="fa fa-filter" aria-hidden="true"></i> Filter Orders</h3><br />
+    <div class="filter-row">
+      <div class="field">
+        <label>Start Date</label>
+        <input type="date" id="filterStartDate" />
+      </div>
+
+      <div class="field">
+        <label>End Date</label>
+        <input type="date" id="filterEndDate" />
+      </div>
+
+      <button class="secondary-btn" id="clearDatesBtn">Clear Dates</button>
+
+      <label class="check">
+        <input type="checkbox" id="pendingPaymentsOnly" />
+        Show Only Pending Payments
+      </label>
+    </div>
+  </section>
+   </div>
+
+  <!-- ORDERS LIST -->
+<section id="ordersListSection" style="margin-top: 30px;">
+  <h3><i class="fa fa-list" aria-hidden="true"></i> Orders List</h3>
+
+  <div id="ordersTableBody" class="orders-cards-list">
+    <!-- cards injected by JS -->
+  </div>
+</section>
+
+
+  <!-- NEW ORDER FORM -->
+  <div class="form-backdrop" id="formBackdrop"></div>
+  <form id="orderForm">
+  <section class="new-order-form" id="newOrderForm">
+    <div class="order-wrapper">
+            <div class="form-header">
+        <h2 class="form-title">New Order</h2>
+
+      <button
+        type="button"
+        id="closeFormBtn"
+        class="close-form-btn"
+        aria-label="Close form">
+        <i class="fa fa-times" aria-hidden="true"></i>
+      </button>
+
+      </div>
+
+      <!-- ORDER DETAILS -->
+      <div class="box">
+        <h3>Order Details</h3>
+
+        <div class="grid-3">
+          <div>
+            <label>Order No. *</label>
+            <input
+                type="text"
+                id="orderNo"
+                readonly
+              />
+
+          </div>
+
+          <div>
+            <label>Client Name *</label>
+            <input type="text" id="clientName" />
+          </div>
+
+          <div>
+            <label>Event Type *</label>
+            <select id="eventType">
+              <option disabled selected>Select type</option>
+              <option>Wedding</option>
+              <option>Pre-Wedding</option>
+              <option>Reception</option>
+              <option>Engagement</option>
+              <option>Birthday</option>
+              <option>Corporate Event</option>
+              <option>Other</option>
+            </select>
+          </div>
+
+          <div>
+            <label>Event Date *</label>
+            <input type="date" id="eventDate" />
+          </div>
+
+          <div>
+            <label>Location *</label>
+            <input type="text" id="location" />
+          </div>
+
+          <div>
+            <label>Status</label>
+              <select id="orderStatus">
+                <option>Upcoming</option>
+                <option>Ongoing</option>
+                <option>Completed</option>
+              </select>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- REVENUE -->
+      <div class="box">
+        <h3>₹ Revenue & Client Payments</h3>
+        <label>Total Amount from Client (₹) *</label>
+        <input type="number" id="totalAmount" class="full-input" />
+
+        <div class="row-between">
+          <strong>Payments Received</strong>
+          <button type="button" class="small-btn add-payment-btn">
+            + Add Payment
+          </button>
+        </div>
+
+        <div id="revenuePayments"></div>
+      </div>
+
+      <!-- PHOTOGRAPHERS -->
+      <div class="box">
+        <div class="row-between">
+          <h3>👤 Photographers Booked</h3>
+          <button type="button" class="small-btn" id="addPhotographerBtn">
+            + Add Photographer
+          </button>
+        </div>
+        <div id="photographerList"></div>
+      </div>
+
+      <!-- TEMPLATE -->
+      <div id="photographerTemplate" style="display:none;">
+        <div class="box photographer-item">
+          <div class="grid-3">
+            <div>
+
+              <label>Name *</label>
+              <input type="text" />
+            </div>
+            <div>
+              <label>Role</label>
+              <select>
+                <option>Main</option>
+                <option>Assistant</option>
+                <option>Videographer</option>
+                <option>Drone</option>
+              </select>
+            </div>
+            <div>
+              <label>Total Amount (₹)</label>
+              <input type="number" class="photographer-total" placeholder="Amount (₹)" />
+            </div>
+          </div>
+
+          <div class="row-between mt">
+            <strong>Payments Made</strong>
+            <button type="button" class="small-btn add-payment-btn">
+              + Add Payment
+            </button>
+          </div>
+
+          <div class="payment-list"></div>
+
+          <button type="button" class="remove-photographer-btn">
+            🗑️ Remove Photographer
+          </button>
+        </div>
+      </div>
+
+      <!-- EXPENSES -->
+      <div class="box">
+        <div class="row-between">
+          <h3>Other Expenses</h3>
+          <button type="button" class="small-btn add-expense-btn">
+            + Add Expense
+          </button>
+        </div>
+        <div id="expenseList"></div>
+      </div>
+      <!-- ORDER SUMMARY BAR -->
+      <div class="order-summary-bar">
+        <div class="summary-item">
+          <span>Total Revenue</span>
+          <strong id="summaryRevenue">₹0</strong>
+        </div>
+
+        <div class="summary-item">
+          <span>Total Expense</span>
+          <strong id="summaryExpense">₹0</strong>
+        </div>
+
+        <div class="summary-item">
+          <span>Profit/Loss</span>
+          <strong id="summaryProfit" class="profit">₹0</strong>
+        </div>
+
+        <div class="summary-item">
+          <span>To Receive</span>
+          <strong id="summaryReceive" class="receive">₹0</strong>
+        </div>
+        <div class="form-action-row">
+        <button type="button" id="cancelOrderBtn" class="cancel-btn">
+          CANCEL
+        </button>
+
+        <button type="submit" class="create-order-btn">CREATE ORDER</button>
+        </div>
+
+
+  </section>
+  </form>
+
+</main>
+
+<!-- ✅ LINKED EXTERNAL JS -->
+<script src="orders.js"></script>
+
+</body>
+</html>
+

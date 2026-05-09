@@ -6,17 +6,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>VD-photography</title>
 
-  <!-- CSS -->
   <link rel="stylesheet" href="./css/common.css">
   <link rel="stylesheet" href="./css/home.css">
+  
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
 </head>
 
 <body>
 
-  <!-- HEADER -->
   <div id="header"></div>
 
-  <!-- HERO -->
   <section class="hero">
     <div class="hero-left">
       <h1>
@@ -41,10 +40,8 @@
     </div>
   </section>
 
-  <!-- SERVICES -->
   <section class="services">
-    <div class="services-header">
-      <div class="left">
+    <div class="services-header reveal"> <div class="left">
         <span class="section-no">01 — SERVICES</span>
         <h2>WHAT WE DO</h2>
       </div>
@@ -58,7 +55,7 @@
     </div>
 
     <div class="services-list">
-      <div class="service-item">
+      <div class="service-item reveal"> 
         <div class="service-left">
           <span class="count">01</span>
           <h3>Portrait Photography</h3>
@@ -68,7 +65,7 @@
         </div>
       </div>
 
-      <div class="service-item">
+      <div class="service-item reveal">
         <div class="service-left">
           <span class="count">02</span>
           <h3>Event Coverage</h3>
@@ -78,8 +75,7 @@
         </div>
       </div>
 
-      <!-- FIXED duplicate item -->
-      <div class="service-item">
+      <div class="service-item reveal">
         <div class="service-left">
           <span class="count">03</span>
           <h3>Wedding Photography</h3>
@@ -91,37 +87,16 @@
     </div>
   </section>
 
-  <!-- PORTFOLIO -->
-  <section class="portfolio">
-    <div class="portfolio-header">
-      <h2>SELECTED WORKS</h2>
-      <a href="./pages/portfolio.html" class="view-all">VIEW ALL →</a>
-    </div>
+<section class="portfolio">
+  <div class="portfolio-header reveal"> 
+    <h2>SELECTED WORKS</h2>
+    <a href="./pages/portfolio.html" class="view-all">VIEW ALL →</a>
+  </div>
 
-    <div class="portfolio-grid">
-      <div class="portfolio-item">
-        <img src="./images/portfolio_img1.jpg" alt="Portfolio image 1">
-      </div>
-
-      <div class="portfolio-item">
-        <img src="./images/portfolio_img2.jpg" alt="Portfolio image 2">
-      </div>
-
-      <div class="portfolio-item">
-        <img src="./images/portfolio_img3.jpg" alt="Portfolio image 3">
-      </div>
-
-      <div class="portfolio-item">
-        <img src="./images/portfolio_img4.jpg" alt="Portfolio image 3">
-      </div>
-
-      <div class="portfolio-item">
-        <img src="./images/portfolio_img5.jpg" alt="Portfolio image 3">
-      </div>
-    </div>
-  </section>
-
-  <!-- ================= CTA ================= -->
+  <div class="portfolio-grid reveal" id="selectedWorksGrid"> 
+     <p style="color: #666; padding: 20px;">Loading gallery...</p>
+  </div>
+</section>
   <section class="cta">
     <h1 class="reveal">LET'S CREATE<br>SOMETHING REAL</h1>
     <p class="reveal">
@@ -131,14 +106,11 @@
     <a href="./pages/enquiry.html" class="cta-btn reveal">Start a Project</a>
   </section>
 
-  <!-- FOOTER -->
   <div id="footer"></div>
 
-  <!-- ICONS -->
   <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
   <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 
-  <!-- MAIN JS -->
   <script src="./js/main.js"></script>
 
 </body>

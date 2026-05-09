@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Events | Photography</title>
+    <link rel="stylesheet" href="../css/event.css">
+    <link rel="stylesheet" href="../css/common.css"> 
+</head>
+<body>
+    <div id="header"></div>
+
+    <div class="container">
+        
+<div id="level1" class="view active">
+    <h1>Our Happy Clients</h1>
+    <p class="subtitle">Select a client to view their event memories</p>
+    <div class="grid-standard" id="customerGrid"></div>
+</div>
+
+<div id="level2" class="view">
+    <button class="back-btn" onclick="goBack(1)">← Back to Clients</button>
+    <h1 id="customerTitle">Events</h1>
+    <p class="subtitle">Choose an event to see the gallery</p>
+    <div class="grid-standard" id="eventTypeGrid"></div>
+</div>
+
+        <div id="level3" class="view">
+            <button class="back-btn" onclick="goBack(2)">← Back to Events</button>
+            <h1 id="eventTitle">Photos</h1>
+            <div class="grid-masonry" id="galleryGrid"></div>
+        </div>
+
+    </div>
+
+    <div id="footer"></div>
+
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+
+    <script src="../js/main.js"></script>
+    <script src="../js/event.js"></script>
+</body>
+</html>

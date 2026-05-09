@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Photography Admin Panel</title>
+    <link rel="stylesheet" href="../css/admin.css">
+    <link rel="stylesheet" href="../css/manage_portfolio.css">
+</head>
+<body>
+
+    <nav class="navbar">
+        <button class="nav-item active" onclick="handleNav(event,'photos')">📸 Photos</button>
+        <button class="nav-item" onclick="handleNav(event,'bills')">📄 Bills & Quotations</button>
+        <button class="nav-item" onclick="handleNav(event,'orders')">💰 Orders & Expenses</button>
+        <button class="nav-item" onclick="handleNav(event,'bookings')">📅 Bookings</button>
+    </nav>
+
+    <div class="container">
+        
+        <div id="photos" class="tab-content active">
+            <div class="header-section">
+                <div class="header-left"></div> 
+
+                <h1 class="title">Photo Management</h1>
+
+
+            <div id="albumListView" class="view active">
+                <div class="header-row">
+                    <h2>Manage Portfolio</h2>
+                    <button class="add-btn" onclick="toggleModal(true)">+ Add Photo</button>
+                </div>
+
+                <div class="album-grid" id="albumGrid">
+                    </div>
+            </div>
+
+            <div id="albumDetailView" class="view" style="display: none;">
+                <button class="back-btn" onclick="closeAlbum()">← Back to Albums</button>
+                <div class="header-row">
+                    <h1 id="selectedAlbumTitle">Album</h1>
+                </div>
+                <div class="photos-grid" id="photosGrid">
+                    </div>
+            </div>
+        </div>
+
+        <div id="bills" class="tab-content"><h1>Bills & Quotations Section</h1></div>
+        <div id="orders" class="tab-content"><h1>Orders & Expenses Section</h1></div>
+        <div id="bookings" class="tab-content"><h1>Bookings Section</h1></div>
+    </div>
+
+    <div id="albumModal" class="modal">
+        <div class="modal-content">
+            <span class="close-icon" onclick="toggleModal(false)">&times;</span>
+            <h2>Upload Photo</h2>
+            <form id="albumForm">
+                <div class="form-group">
+                    <label>ALBUM / CATEGORY NAME</label>
+                    <input type="text" id="albumName" placeholder="e.g. Wedding Ceremony" required>
+                </div>
+                <div class="form-group">
+                    <label>UPLOAD PHOTO</label>
+                    <div class="file-upload">
+                        <input type="file" id="photoInput" hidden accept="image/*" required>
+                        <button type="button" onclick="document.getElementById('photoInput').click()">Choose File</button>
+                        <span id="fileName">No file chosen</span>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="cancel-btn" onclick="toggleModal(false)">Cancel</button>
+                    <button type="submit" class="submit-btn">Add Photo</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="../js/admin.js"></script>
+    <script src="../js/managePortfolio.js"></script>
+    
+
+       
+</body>
+</html>

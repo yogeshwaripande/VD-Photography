@@ -1,129 +1,99 @@
-fetch("../common/header.html")
-  .then((res) => res.text())
-  .then((data) => {
-    document.getElementById("header").innerHTML = data;
+const API_BASE = "http://localhost:5000";
 
-    const mobile_nav = document.querySelector(".mobile-nav-btn");
-    const nav_header = document.querySelector(".header");
+/* ================= 1. DYNAMIC HEADER & MOBILE NAV ================= */
+const loadHeader = async () => {
+    try {
+        const res = await fetch("../common/header.html");
+        const data = await res.text();
+        const headerEl = document.getElementById("header");
 
-    if (mobile_nav && nav_header) {
-      mobile_nav.addEventListener("click", () => {
-        nav_header.classList.toggle("active");
-      });
+        if (headerEl) {
+            headerEl.innerHTML = data;
+
+            // Header load jhalya nantar elements select kara
+            const mobile_nav = document.querySelector(".mobile-nav-btn");
+            const nav_header = document.querySelector(".header");
+
+            if (mobile_nav && nav_header) {
+                mobile_nav.addEventListener("click", () => {
+                    nav_header.classList.toggle("active");
+                    
+                    // Menu open astana scroll band kara
+                    if (nav_header.classList.contains("active")) {
+                        document.body.style.overflow = "hidden";
+                    } else {
+                        document.body.style.overflow = "auto";
+                    }
+                });
+            }
+        }
+    } catch (err) {
+        console.error("Header loading failed:", err);
     }
-  });
+};
 
-window.addEventListener("load", () => {
-  /* ================= HERO ================= */
-  const hero = document.querySelector(".hero");
-  if (hero) hero.classList.add("loaded");
+/* ================= 2. PORTFOLIO SLIDER ================= */
+async function loadSelectedWorks() {
+    const grid = document.getElementById("selectedWorksGrid");
+    if (!grid) return;
 
-  /* ================= PORTFOLIO AUTOPLAY ================= */
+    try {
+        const res = await fetch(`${API_BASE}/api/portfolio`);
+        const portfolioData = await res.json();
+        
+        if (!portfolioData || portfolioData.length === 0) return;
 
-  const slider = document.querySelector(".portfolio-grid");
-  const slides = document.querySelectorAll(".portfolio-item");
+        grid.innerHTML = portfolioData.map(item => {
+            const cleanPath = item.image.replace(/\\/g, '/');
+            return `
+                <div class="portfolio-item">
+                    <img src="${API_BASE}/${cleanPath}" alt="Work" loading="lazy">
+                </div>
+            `;
+        }).join('');
 
-  if (!slider || slides.length === 0) return;
-
-  let current = 0;
-  const gap = 30;
-  const interval = 2500;
-
-  function autoPlay() {
-    current++;
-
-    if (current >= slides.length) {
-      current = 0;
+        startSlider(grid);
+    } catch (err) {
+        console.error("Portfolio Load Error:", err);
     }
+}
 
-    const slideWidth = slides[0].offsetWidth + gap;
+function startSlider(slider) {
+    let current = 0;
+    setInterval(() => {
+        const slides = slider.querySelectorAll(".portfolio-item");
+        if (slides.length === 0) return;
 
-    slider.scrollTo({
-      left: current * slideWidth,
-      behavior: "smooth",
-    });
-  }
+        slides.forEach(s => s.classList.remove('active'));
+        current = (current + 1) % slides.length;
+        slides[current].classList.add('active');
 
-  let auto = setInterval(autoPlay, interval);
+        const slideWidth = slides[0].offsetWidth + 20;
+        slider.scrollTo({ left: current * slideWidth, behavior: "smooth" });
+    }, 4000);
+}
 
-  slider.addEventListener("mouseenter", () => clearInterval(auto));
-  slider.addEventListener(
-    "mouseleave",
-    () => (auto = setInterval(autoPlay, interval)),
-  );
-  slider.addEventListener("touchstart", () => clearInterval(auto));
-  slider.addEventListener(
-    "touchend",
-    () => (auto = setInterval(autoPlay, interval)),
-  );
+/* ================= 3. INITIALIZE EVERYTHING ================= */
+window.addEventListener("DOMContentLoaded", () => {
+    loadHeader();
+    loadSelectedWorks();
+    
+    // Footer load
+    fetch("../common/footer.html")
+        .then(res => res.text())
+        .then(data => {
+            const footerEl = document.getElementById("footer");
+            if (footerEl) footerEl.innerHTML = data;
+        });
 });
 
-/* ================= CURSOR EFFECT ================= */
-
-const cursor = document.querySelector(".cursor");
-const targets = document.querySelectorAll(".work, .cursor-target");
-
-if (cursor) {
-  document.addEventListener("mousemove", (e) => {
-    cursor.style.left = e.clientX + "px";
-    cursor.style.top = e.clientY + "px";
-  });
-
-  targets.forEach((el) => {
-    el.addEventListener("mouseenter", () => {
-      cursor.style.transform = "translate(-50%, -50%) scale(1)";
+// Scroll Reveal Logic
+window.addEventListener("scroll", () => {
+    const reveals = document.querySelectorAll(".reveal");
+    reveals.forEach((el) => {
+        const elementTop = el.getBoundingClientRect().top;
+        if (elementTop < window.innerHeight - 120) {
+            el.classList.add("active");
+        }
     });
-
-    el.addEventListener("mouseleave", () => {
-      cursor.style.transform = "translate(-50%, -50%) scale(0)";
-    });
-  });
-} // ================= SCROLL REVEAL =================
-
-const reveals = document.querySelectorAll(".reveal");
-
-const revealOnScroll = () => {
-  reveals.forEach((el) => {
-    const windowHeight = window.innerHeight;
-    const elementTop = el.getBoundingClientRect().top;
-    const revealPoint = 120;
-
-    if (elementTop < windowHeight - revealPoint) {
-      el.classList.add("active");
-    }
-  });
-};
-
-window.addEventListener("scroll", revealOnScroll);
-revealOnScroll();
-
-
-document.querySelectorAll(".image-slider").forEach((slider) => {
-  const images = slider.querySelectorAll("img");
-  let index = 0;
-
-  setInterval(() => {
-    images[index].classList.remove("active");
-    index = (index + 1) % images.length;
-    images[index].classList.add("active");
-  }, 6000);
 });
-
-window.addEventListener("scroll", revealOnScroll);
-revealOnScroll(); // run once on page load
-
-// Always load page from top on refresh
-window.onbeforeunload = function () {
-  window.scrollTo(0, 0);
-};
-
-window.onload = function () {
-  window.scrollTo(0, 0);
-};
-
-fetch("../common/footer.html")
-  .then((res) => res.text())
-  .then((data) => {
-    document.getElementById("footer").innerHTML = data;
-  });
-

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Event Gallery | VD Photography</title>
+
+    <link rel="stylesheet" href="../css/common.css" />
+    <link rel="stylesheet" href="../css/customer.css" />
+</head>
+<body>
+
+<div id="header"></div>
+
+<section class="event-hero">
+    <div class="event-box">
+        <div class="event-left">
+            <div class="event-small-box">
+                <h1 id="eventTitle">Loading...</h1>
+            </div>
+            <div class="event-small-box">
+                <p id="clientName"></p>
+            </div>
+        </div>
+
+       <div class="event-right">
+            <div class="event-big-box">
+                <img src="../images/home/logo.png" alt="VD Photography Logo" style="width: 100%; max-width: 450px; height: auto; display: block; margin: 0 auto;">
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="controls-section">
+    <div class="selection-bar">
+        <button onclick="history.back()" class="back-link-btn">
+            <span class="icon">←</span> Back to Events
+        </button>
+
+        <div class="section-title">All Photos</div>
+        
+        <div class="btn-group">
+            <button id="selectAllBtn" class="btn-secondary">Select All</button>
+            <button id="downloadSelectedBtn" class="btn-primary" style="display: none;">
+                Download Selected (<span id="selectedCount">0</span>)
+            </button>
+        </div>
+    </div>
+</section>
+
+<section class="gallery-section">
+    <div class="photo-grid" id="allPhotos">
+        </div>
+</section>
+
+<div class="lightbox" id="lightbox" onclick="closeLightbox(event)">
+    <span class="close" onclick="document.getElementById('lightbox').style.display='none'">&times;</span>
+    <img id="lightboxImg" src="" alt="Full View" />
+</div>
+
+<div id="footer"></div>
+
+<script src="../js/main.js"></script>
+<script src="../js/customer.js"></script>
+
+<script>
+    function closeLightbox(event) {
+        if (event.target.id === 'lightbox') {
+            document.getElementById('lightbox').style.display = 'none';
+        }
+    }
+</script>
+
+</body>
+</html>

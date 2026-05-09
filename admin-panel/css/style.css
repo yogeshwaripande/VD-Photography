@@ -1,0 +1,217 @@
+* {
+    box-sizing: border-box;
+    font-family: "Segoe UI", Tahoma, sans-serif;
+}
+
+body {
+    margin: 0;
+    color: #222;
+}
+.main-container {
+    padding: 30px 50px;
+}
+/* ================= CONTAINER ================= */
+.container {
+    padding: 30px 50px;
+}
+
+/* ================= HEADER ================= */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header h2 {
+    margin: 0;
+    font-size: 26px;
+    font-weight: 600;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, #1e66ff, #0047ff);
+    color: #fff;
+    border: none;
+    padding: 5px 5px;
+    font-weight: bold;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: 0.3s;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+   
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    opacity: 0.95;
+}
+
+/* ================= SUB TABS ================= */
+.sub-tabs {
+    margin-top: 25px;
+    display: flex;
+    gap: 30px;
+    border-bottom: 1px solid #ddd;
+}
+
+.sub-tab {
+    padding-bottom: 12px;
+    cursor: pointer;
+    font-weight: 500;
+    color: #555;
+}
+
+.sub-tab.active {
+    color: #1e66ff;
+    border-bottom: 3px solid #1e66ff;
+}
+
+/* ================= FILTER BOX ================= */
+.filters-box {
+    background: #fff;
+    padding: 25px;
+    margin-top: 30px;
+    border-radius: 10px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+}
+
+.filters-box h3 {
+    margin: 0;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+/* ================= FILTERS ================= */
+.filters {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 18px;
+    margin-top: 18px;
+}
+
+.filters input,
+.filters select {
+    padding: 12px 14px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+    transition: 0.3s;
+}
+
+.filters input:focus,
+.filters select:focus {
+    outline: none;
+    border-color: #1e66ff;
+    box-shadow: 0 0 0 2px rgba(30,102,255,0.2);
+}
+
+/* ================= CLEAR BUTTON ================= */
+.btn-clear {
+    margin-top: 18px;
+    padding: 10px 18px;
+    border-radius: 6px;
+    border: 1px solid #000;
+    background: #fff;
+    font-weight: 500;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.btn-clear:hover {
+    background: #000;
+    color: #fff;
+}
+
+/* ================= RESPONSIVE ================= */
+@media (max-width: 768px) {
+
+    .container {
+        padding: 20px;
+    }
+
+    .header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+
+    .top-tabs {
+        flex-wrap: wrap;
+    }
+
+    .tab {
+        padding: 12px 18px;
+    }
+}
+/* ================= QUOTATION CARD ================= */
+.quote-card {
+    background: #fff;
+    padding: 22px;
+    margin-top: 25px;
+    border-radius: 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+}
+
+.quote-card .left h3 {
+    margin: 0;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.quote-card .left p {
+    margin: 6px 0;
+    font-size: 14px;
+    color: #555;
+}
+
+.quote-card .status {
+    display: inline-block;
+    margin-top: 8px;
+    padding: 4px 10px;
+    font-size: 12px;
+    border-radius: 20px;
+    font-weight: bold;
+}
+
+.status.pending {
+    background: #fff3cd;
+    color: #856404;
+}
+
+.actions {
+    margin-top: 12px;
+    display: flex;
+    gap: 10px;
+}
+
+.actions button {
+    padding: 6px 12px;
+    border: 1px solid #ccc;
+    background: #fff;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 13px;
+}
+
+.actions .danger {
+    border-color: #dc3545;
+    color: #dc3545;
+}
+
+.quote-card .right {
+    text-align: right;
+}
+
+.quote-card .right h2 {
+    margin: 0;
+    font-size: 22px;
+}
+
+.quote-card .right p {
+    margin-top: 6px;
+    font-size: 13px;
+    color: #666;
+}
